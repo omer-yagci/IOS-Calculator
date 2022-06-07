@@ -1,60 +1,68 @@
-const ınputBox = document.querySelector(".empty");
-const ınputBox2 = document.querySelector(".empty-2");
-const boxes = document.querySelector(".container");
+const containerElements = document.querySelector(".container");
+const empty1 = document.querySelector(".empty");
+const empty2 = document.querySelector(".empty-2");
+
 let operator = "";
-let firstValue = "";
-boxes.addEventListener("click", (e) => {
-  console.log(e.target);
 
-  let ınputValue = ınputBox.innerHTML;
-  let boxValue = e.target.innerHTML;
+// Capturing Method
 
-  if (e.target.classList.contains("box")) {
-    if (ınputBox.innerHTML === "0" && e.target.innerHTML === "0") {
-    } else if (ınputBox.innerHTML === "0") {
-      ınputBox.innerHTML = boxValue;
+containerElements.addEventListener("click", (event) => {
+  let eventClick = event.target;
+  // Check valid ınput
+  if (eventClick.classList.contains("box")) {
+    if (empty1.innerText === "0" && eventClick.innerText === "0") {
+    } else if (empty1.innerText === "0") {
+      empty1.innerText = eventClick.innerText;
     } else {
-      ınputBox.innerHTML += boxValue;
+      empty1.innerText += eventClick.innerText;
     }
   }
-  if (e.target.classList.contains("operator")) {
-    operator = boxValue;
-    firstValue = ınputValue;
-    ınputBox2.innerHTML = firstValue + "" + operator;
-    ınputBox.innerHTML = "0";
+  // Operator Section
+  if (eventClick.classList.contains("operator")) {
+    operator = event.target.innerText;
+    empty2.innerText = empty1.innerText.slice(0, -1) + "" + operator;
+    empty1.innerText = "0";
   }
 
-  if (e.target.classList.contains("equal")) {
+  // Calculate Section
+  if (eventClick.classList.contains("equal")) {
     switch (operator) {
       case "+":
-        ınputBox.innerHTML = Number(firstValue) + Number(ınputValue);
-        ınputBox2.innerHTML = ınputBox.innerHTML;
-        ınputBox.innerHTML = "";
+        empty2.innerText =
+          Number(empty2.innerText.slice(0, -1)) +
+          Number(empty1.innerText.slice(0, -1));
+        empty1.innerText = "";
         break;
       case "-":
-        ınputBox.innerHTML = Number(firstValue) - Number(ınputValue);
-        ınputBox2.innerHTML = ınputBox.innerHTML;
-        ınputBox.innerHTML = "";
-        break;
-      case "*":
-        ınputBox.innerHTML = Number(firstValue) * Number(ınputValue);
-        ınputBox2.innerHTML = ınputBox.innerHTML;
-        ınputBox.innerHTML = "";
+        empty2.innerText =
+          Number(empty2.innerText.slice(0, -1)) -
+          Number(empty1.innerText.slice(0, -1));
+        empty1.innerText = "";
         break;
       case "/":
-        ınputBox.innerHTML = Number(firstValue) / Number(ınputValue);
-        ınputBox2.innerHTML = ınputBox.innerHTML;
-        ınputBox.innerHTML = "";
+        empty2.innerText =
+          Number(empty2.innerText.slice(0, -1)) /
+          Number(empty1.innerText.slice(0, -1));
+        empty1.innerText = "";
+        break;
+      case "*":
+        empty2.innerText =
+          Number(empty2.innerText.slice(0, -1)) *
+          Number(empty1.innerText.slice(0, -1));
+        empty1.innerText = "";
         break;
       case "%":
-        ınputBox.innerHTML = Number(firstValue) % Number(ınputValue);
-        ınputBox2.innerHTML = ınputBox.innerHTML;
-        ınputBox.innerHTML = "";
+        empty2.innerText =
+          (Number(empty2.innerText.slice(0, -1)) *
+            Number(empty1.innerText.slice(0, -1))) /
+          100;
+        empty1.innerText = "";
         break;
     }
   }
-  if (e.target.classList.contains("box__ac")) {
-    ınputBox.innerHTML = "";
-    ınputBox2.innerHTML = "";
+  // Clear Button
+  if (eventClick.classList.contains("box__ac")) {
+    empty1.innerText = "0";
+    empty2.innerText = "";
   }
 });
