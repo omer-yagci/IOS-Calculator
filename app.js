@@ -8,6 +8,7 @@ let operator = "";
 
 containerElements.addEventListener("click", (event) => {
   let eventClick = event.target;
+
   // Check valid ınput
   if (eventClick.classList.contains("box")) {
     if (empty1.innerText === "0" && eventClick.innerText === "0") {
@@ -65,5 +66,10 @@ containerElements.addEventListener("click", (event) => {
   if (eventClick.classList.contains("box__ac")) {
     empty1.innerText = "0";
     empty2.innerText = "";
+  }
+  if (eventClick.classList.contains("box__plus-minus")) {
+    let ömer = empty1.innerText.slice(0, -1) * -1;
+
+    empty1.innerText = ömer;
   }
 });
