@@ -1,11 +1,9 @@
 const containerElements = document.querySelector(".container");
 const empty1 = document.querySelector(".empty");
 const empty2 = document.querySelector(".empty-2");
-
 let operator = "";
 
 // Capturing Method
-
 containerElements.addEventListener("click", (event) => {
   let eventClick = event.target;
 
@@ -24,7 +22,6 @@ containerElements.addEventListener("click", (event) => {
     empty2.innerText = empty1.innerText.slice(0, -1) + "" + operator;
     empty1.innerText = "0";
   }
-
   // Calculate Section
   if (eventClick.classList.contains("equal")) {
     switch (operator) {
@@ -70,7 +67,6 @@ containerElements.addEventListener("click", (event) => {
   // Reverse Button
   if (eventClick.classList.contains("box__plus-minus")) {
     let ömer = empty1.innerText.slice(0, -1) * -1;
-
     empty1.innerText = ömer;
   }
 });
