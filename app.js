@@ -67,6 +67,7 @@ containerElements.addEventListener("click", (event) => {
     empty1.innerText = "0";
     empty2.innerText = "";
   }
+  // Reverse Button
   if (eventClick.classList.contains("box__plus-minus")) {
     let ömer = empty1.innerText.slice(0, -1) * -1;
 
