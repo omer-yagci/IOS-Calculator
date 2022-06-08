@@ -40,9 +40,10 @@ containerElements.addEventListener("click", (event) => {
         empty1.innerText = "";
         break;
       case "/":
-        empty2.innerText =
+        empty2.innerText = (
           Number(empty2.innerText.slice(0, -1)) /
-          Number(empty1.innerText.slice(0, -1));
+          Number(empty1.innerText.slice(0, -1))
+        ).toFixed(1);
         empty1.innerText = "";
         break;
       case "*":
